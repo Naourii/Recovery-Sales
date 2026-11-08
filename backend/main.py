@@ -874,3 +874,6 @@ app.include_router(leads_router)
 app.include_router(messages_router)
 app.include_router(analytics_router)
 app.include_router(crm_router)
+@app.get("/")
+def home():
+    return {"status": "ok"}
