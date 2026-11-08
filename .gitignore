@@ -1,0 +1,12 @@
+# Node & Next.js (Frontend)
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Python Cache (Backend)
+__pycache__/
+backend/__pycache__/
+*.pyc
+
+# Environment files
+.env

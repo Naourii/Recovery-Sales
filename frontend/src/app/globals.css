@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #050816;
+  --color-panel: #090e26;
+  --color-raised: #0f1635;
+  --color-line: #1a2352;
+  --color-line-strong: #2b3a7c;
+  --color-fg: #eef1ff;
+  --color-fg-muted: #a6b1d9;
+  --color-fg-dim: #7b87b8;
+  --color-brand: #7aa2ff;
+  --color-brand-strong: #3d6bf5;
+  --color-violet: #a78bfa;
+  --color-ok: #4ade9a;
+  --color-warn: #fbbf4d;
+  --color-bad: #ff7b8c;
+  --color-info: #5cc8ff;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+:root { color-scheme: dark; }
+html { background: var(--color-canvas); }
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-fg);
+  background-color: var(--color-canvas);
+  background-image:
+    radial-gradient(1100px 600px at 80% -10%, rgba(61, 107, 245, 0.22), transparent 60%),
+    radial-gradient(800px 500px at -10% 10%, rgba(139, 92, 246, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 50% 112%, rgba(30, 64, 175, 0.2), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
+::selection { background: rgba(122, 162, 255, 0.35); }
+* { scrollbar-width: thin; scrollbar-color: var(--color-line-strong) transparent; }
+
+@layer components {
+  /* Glass card */
+  .card {
+    position: relative;
+    border-radius: 18px;
+    border: 1px solid rgba(120, 145, 255, 0.16);
+    background: linear-gradient(160deg, rgba(34, 48, 112, 0.5) 0%, rgba(14, 20, 52, 0.82) 55%, rgba(10, 14, 40, 0.92) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 22px 40px -26px rgba(0, 0, 0, 0.75);
+  }
+  .card-glow { transition: border-color 0.2s, box-shadow 0.2s; }
+  .card-glow:hover {
+    border-color: rgba(122, 162, 255, 0.45);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 0 1px rgba(122, 162, 255, 0.12),
+      0 18px 50px -18px rgba(61, 107, 245, 0.45);
+  }
+  /* Light leak on the bottom edge, like the reference */
+  .card-edge::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 34%;
+    height: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, #6ea8ff, transparent);
+    box-shadow: 0 0 18px 2px rgba(91, 140, 255, 0.55);
+    pointer-events: none;
+  }
+  /* Darker inner panel */
+  .well {
+    border-radius: 14px;
+    border: 1px solid rgba(120, 145, 255, 0.14);
+    background: rgba(5, 8, 26, 0.55);
+  }
+  .dotgrid {
+    background-image: radial-gradient(rgba(140, 160, 255, 0.2) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  .hatch {
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.3) 0 4px, transparent 4px 8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
